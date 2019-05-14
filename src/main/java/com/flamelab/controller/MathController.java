@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/math")
 public class MathController {
 
-    @Autowired
     private MathActions mathActions;
+
+    @Autowired
+    public MathController(MathActions mathActions) {
+        this.mathActions = mathActions;
+    }
 
     @GetMapping("/")
     @ResponseBody

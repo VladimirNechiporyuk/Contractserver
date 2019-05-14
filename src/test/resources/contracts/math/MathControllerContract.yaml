@@ -1,7 +1,7 @@
 request:
     method: GET
-    url: /math
-    body:
+    url: /math/
+    queryParameters:
         number : 2
         multiplier : 2
 
@@ -9,7 +9,7 @@ request:
         Content-Type: application/json
 
 response:
-    status: 404
-#    headers:
-#        Content-Type: application/json;charset=UTF-8
+    status: 200
+    headers:
+        Content-Type: application/json;charset=UTF-8
 #    body: 4

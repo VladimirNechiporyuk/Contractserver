@@ -1,12 +1,10 @@
 package com.flamelab.contract;
 
 import com.flamelab.controller.MathController;
-import com.flamelab.service.MathActions;
+import com.flamelab.service.MathService;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.verifier.messaging.boot.AutoConfigureMessageVerifier;
 import org.springframework.test.annotation.DirtiesContext;
@@ -18,12 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureMessageVerifier
 public abstract class ContractBaseTest {
 
-    @Autowired
-    private MathActions mathActions;
-
     @Before
     public void setup() {
-        RestAssuredMockMvc.standaloneSetup(new MathController());
+        RestAssuredMockMvc.standaloneSetup(new MathController(new MathService()));
     }
 
     public void makeMultiplying() {
