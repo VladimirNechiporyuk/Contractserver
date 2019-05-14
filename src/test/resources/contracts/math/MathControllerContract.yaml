@@ -1,0 +1,15 @@
+request:
+    method: GET
+    url: /math
+    body:
+        number : 2
+        multiplier : 2
+
+    headers:
+        Content-Type: application/json
+
+response:
+    status: 404
+#    headers:
+#        Content-Type: application/json;charset=UTF-8
+#    body: 4
