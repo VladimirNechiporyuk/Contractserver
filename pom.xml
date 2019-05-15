@@ -36,40 +36,7 @@
             <version>${spring-cloud-contract-verifier.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--        <dependency>
-                    <groupId>io.rest-assured</groupId>
-                    <artifactId>spring-mock-mvc</artifactId>
-                    <version>3.2.0</version>
-                    <scope>test</scope>
-                </dependency>
 
-                <dependency>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-io</artifactId>
-                    <version>3.1.1</version>
-                </dependency>
-
-                &lt;!&ndash;        Fixing Javax errors&ndash;&gt;
-                <dependency>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                    <version>2.2.11</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.xml.bind</groupId>
-                    <artifactId>jaxb-core</artifactId>
-                    <version>2.2.11</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.sun.xml.bind</groupId>
-                    <artifactId>jaxb-impl</artifactId>
-                    <version>2.2.11</version>
-                </dependency>
-                <dependency>
-                    <groupId>javax.activation</groupId>
-                    <artifactId>activation</artifactId>
-                    <version>1.1.1</version>
-                </dependency>-->
     </dependencies>
 
     <dependencyManagement>
