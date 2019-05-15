@@ -1,6 +1,6 @@
 request:
     method: GET
-    url: /math/
+    url: /math/multiply
     queryParameters:
         number : 2
         multiplier : 2

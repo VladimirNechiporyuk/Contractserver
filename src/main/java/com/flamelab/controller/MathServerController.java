@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/math")
-public class MathController {
+public class MathServerController {
 
     private MathActions mathActions;
 
     @Autowired
-    public MathController(MathActions mathActions) {
+    public MathServerController(MathActions mathActions) {
         this.mathActions = mathActions;
     }
 
-    @GetMapping("/")
+    @GetMapping("/multiply")
     @ResponseBody
     public Integer multiplyNumber(Integer number, Integer multiplier) {
         return mathActions.multiply(number, multiplier);
