@@ -36,7 +36,6 @@
             <version>${spring-cloud-contract-verifier.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <dependencyManagement>
@@ -60,9 +59,6 @@
             <plugin>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <!--
-                                <version>2.1.1.RELEASE</version>
-                -->
                 <extensions>true</extensions>
                 <configuration>
                     <baseClassForTests>com.flamelab.contract.ContractBaseTest</baseClassForTests>
