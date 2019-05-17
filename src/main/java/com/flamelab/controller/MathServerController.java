@@ -2,7 +2,14 @@ package com.flamelab.controller;
 
 import com.flamelab.service.MathActions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/math")
@@ -15,9 +22,12 @@ public class MathServerController {
         this.mathActions = mathActions;
     }
 
-    @GetMapping("/multiply")
+    @GetMapping(value = "/multiply", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Integer multiplyNumber(Integer number, Integer multiplier) {
-        return mathActions.multiply(number, multiplier);
+    public Map<String, Integer> multiplyNumber(Integer number, Integer multiplier) {
+        Integer resultOfMultiplying = mathActions.multiply(number, multiplier);
+        Map<String, Integer> result = new HashMap<>();
+        result.put("result", resultOfMultiplying);
+        return result;
     }
 }

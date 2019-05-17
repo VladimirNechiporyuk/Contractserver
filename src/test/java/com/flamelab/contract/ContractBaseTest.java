@@ -5,6 +5,7 @@ import com.flamelab.service.MathService;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.contract.verifier.messaging.boot.AutoConfigureMessageVerifier;
 import org.springframework.test.annotation.DirtiesContext;
@@ -19,9 +20,12 @@ import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 @AutoConfigureMessageVerifier
 public abstract class ContractBaseTest {
 
+    @Autowired
+    private MathService mathService;
+
     @Before
     public void setup() {
-        RestAssuredMockMvc.standaloneSetup(new MathServerController(new MathService()));
+        RestAssuredMockMvc.standaloneSetup(new MathServerController(mathService));
     }
 
     public void makeMultiplying() {
