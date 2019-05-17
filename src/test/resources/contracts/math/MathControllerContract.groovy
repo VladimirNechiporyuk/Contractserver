@@ -1,3 +1,5 @@
+package contracts.math
+
 import org.springframework.cloud.contract.spec.Contract
 import org.springframework.cloud.contract.spec.internal.HttpMethods
 
