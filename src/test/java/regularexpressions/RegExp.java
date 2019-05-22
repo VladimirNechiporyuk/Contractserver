@@ -2,6 +2,9 @@ package regularexpressions;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +29,7 @@ public class RegExp {
 
     @Test
     public void theard() {
-        Pattern pattern = Pattern.compile("1\\+1=2");
+//        Pattern pattern = Pattern.compile("1\\+1=2");
 //        \Qtext\E - считается как дословное
         Pattern patternNew = Pattern.compile("\\Q1+1=2\\E"); // равно тому же, что и в переменной pattern
         Matcher matcher = patternNew.matcher("1+1=2");
@@ -281,17 +284,17 @@ public class RegExp {
         Pattern pattern = Pattern.compile("colou?r"); //
         Matcher matcher = pattern.matcher("color colour");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
     @Test
     public void twentyTwo() {
         Pattern pattern = Pattern.compile("Nov(ember)?"); // символы, что находятся в ()? являются опциональными, экспрешен найдёт и Nov и November
-                                                          // тоесть он определяет вхождение (ember) может быть 0 или 1 раз
+        // тоесть он определяет вхождение (ember) может быть 0 или 1 раз
         Matcher matcher = pattern.matcher("Noveber Nov");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -301,7 +304,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("Nov(ember)??"); // символы, что находятся в ()? являются опциональными, экспрешен найдёт Nov (ember игнорируется) в November и просто Nov
         Matcher matcher = pattern.matcher("Noveber Nov");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -310,7 +313,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("Nov(ember)? 23(rd)?"); // символы, что находятся в ()? являются опциональными, экспрешен найдёт и Nov и November
         Matcher matcher = pattern.matcher("November 23 November 23rd Nov 23 Nov 23rd");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -320,7 +323,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<[A-Za-z][A-Za-z0-9]*"); // ищет всё, начитая со знака < и после него должна идти буква, а после неё могут быть буквы или цыфры, а может и нет
         Matcher matcher = pattern.matcher("<h1>");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -330,7 +333,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<[A-Za-z][A-Za-z0-9]+"); // ищет всё, начитая со знака < и после него должна идти буква, а после неё должны быть буквы или цифры
         Matcher matcher = pattern.matcher("<a>"); // не найдёт ничего
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -339,7 +342,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("\\b[1-9][0-9]{3}\\b"); // ищет цифры, в которых 1-я цифра от 1 до 9, 2-я цифра от 0 до 9 и этих цифр должно быть 3
         Matcher matcher = pattern.matcher("1000 9999");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -348,7 +351,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("\\b[1-9][0-9]{2,5}\\b"); // ищет цифры, в которых 1-я цифра от 1 до 9, 2-я цифра от 0 до 9 и этих цифр должно быть от 2 до 5
         Matcher matcher = pattern.matcher("100 99999 555555");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -357,7 +360,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<.+>"); // + является Greedy (жадным) и находит всё, что находится между самой первой < до самой последней >
         Matcher matcher = pattern.matcher("This is a <EM>first</EM> test");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -366,7 +369,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<.+?>"); // + стал Reluctant и находит каждый набор символов отдельно
         Matcher matcher = pattern.matcher("This is a <EM>first</EM> test");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -375,7 +378,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<[^>]+>"); // ищет кавычки с любы набором символов между кавычками, в котором символы не вяляются символом >
         Matcher matcher = pattern.matcher("This is a <EM>first</EM> test");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -386,7 +389,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("Set(?:Value)?");
         Matcher matcher = pattern.matcher("Set SetValue");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -395,7 +398,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("EditPad (Lite|Pro) edition"); // находит текст до () + группу + после группы
         Matcher matcher = pattern.matcher("EditPad Pro edition");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -416,7 +419,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<([A-Z][A-Z0-9]*)[^>]*>.*?</\\1>"); // найдёт тег, его тело и закрывающий тег
         Matcher matcher = pattern.matcher("This is a <EM>first</EM> test This is a <EM>second</EM> test");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -427,7 +430,7 @@ public class RegExp {
         Matcher matcher = pattern.matcher("axaxa"); // ecuals [a-c]xaxa - потому-что в месте указания группы нашло a, и в дальнейшем при обращении к группе всегда будет a
 //        Matcher matcher = pattern.matcher("axbxa"); не найдёт
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -436,7 +439,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<([A-Z][A-Z0-9]*)[^>]*>.*?</\\1>"); // вместо \\1 подставится то, что было первым найдено 1-й группой, а это <B>
         Matcher matcher = pattern.matcher("Testing <B><I>bold italic</I></B> text");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -446,7 +449,7 @@ public class RegExp {
 //        Pattern pattern = Pattern.compile("([abc])+"); // когда + следующий после группы, то создастся группа со значением c, потом она перезапишется на A и потом перезапишится на b
         Matcher matcher = pattern.matcher("cab");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -460,7 +463,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("[(a)b]"); // () внутри квадратных скобок воспринимаются буквально и не создают групп
         Matcher matcher = pattern.matcher("abc()");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -471,7 +474,7 @@ public class RegExp {
         Pattern pattern = Pattern.compile("<(?<tag>[A-Z][A-Z0-9]*)[^>]*>.*?</\\k<tag>>"); // вместо \\1 подставится то, что было первым найдено 1-й группой, а это <B>
         Matcher matcher = pattern.matcher("Testing <B><I>bold italic</I></B> text");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
         }
     }
 
@@ -486,7 +489,122 @@ public class RegExp {
         Pattern pattern = Pattern.compile(""); // находит текст до () + группу + после группы
         Matcher matcher = pattern.matcher("");
         while (matcher.find()) {
-            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end()-1, matcher.group()));
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
+        }
+    }
+
+    @Test
+    public void thirtyOne() {
+        Pattern pattern = Pattern.compile(""); // находит текст до () + группу + после группы
+        Matcher matcher = pattern.matcher("");
+        while (matcher.find()) {
+            System.out.println(String.format("%s %s %s", matcher.start(), matcher.end() - 1, matcher.group()));
+        }
+    }
+
+//    =================================================================================================================
+
+
+    @Test
+    public void regExForEmails() {
+        String emails = getEmails();
+        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+");
+        doRegEx(emails, emailsPattern);
+    }
+
+
+    @Test
+    public void regExForPrices() {
+        String prices = getPrices();
+        Pattern pricesPattern = Pattern.compile("\\b[\\d]+[.\\s]?([\\d]+)?\\b");
+        doRegEx(prices, pricesPattern);
+    }
+
+    @Test
+    public void regExForPhones() {
+        String phones = getPhones();
+        Pattern phonesPattern = Pattern.compile("\\b[+]?([1-9]{2})?[\\s(]?[\\d]+[\\s)]?[\\s-_]?([\\d]{3})?[\\s-_]?([\\d]{2})?[\\s-_]?([\\d]{2})? [\\w]+");
+        doRegEx(phones, phonesPattern);
+    }
+
+    @Test
+    public void regExForEmailPricePhone() {
+        String emails = getEmails();
+        String prices = getPrices();
+        String phones = getPhones();
+        String emailsPricesPhones = String.format("%s, %s, %s", emails, prices, phones);
+        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+[^\\s]");
+        Pattern pricesPattern = Pattern.compile("\\b[\\d]+[.\\s]?([\\d]+)?\\b");
+        Pattern phonesPattern = Pattern.compile("\\b[+]?([1-9]{2})?[\\s(]?[\\d]+[\\s)]?[\\s-_]?([\\d]{3})?[\\s-_]?([\\d]{2})?[\\s-_]?([\\d]{2})?");
+        doReExForEmailPricePhone(emailsPricesPhones, emailsPattern, pricesPattern, phonesPattern);
+    }
+
+    private String getEmails() {
+        String email1 = "magdara@gmail.com";
+        String email2 = "magda123r234a@gmail.com";
+        String email3 = "Magda123r234a@gmail.com";
+        String email4 = "magDa123r234a@io.net";
+        return String.format("%s, %s, %s, %s", email1, email2, email3, email4);
+    }
+
+    private String getPrices() {
+        String price1 = "999";
+        String price2 = "10.99";
+        return String.format("%s, %s", price1, price2);
+    }
+
+    private String getPhones() {
+        String phoneUkr = "+38(063)827 82 79";
+        String phoneUkr1 = "0638278279";
+        String phoneUkr2 = "063 827 82 79";
+        String phoneUkr3 = "+38(063)827-82-79";
+        String phoneUkr4 = "+38(063)827_82_79";
+        String phoneUkr5 = "38(063)827_82_79";
+        String phoneUkr6 = "38(063)827-82-79";
+        String phoneUkr7 = "38 063 827-82-79";
+        String phoneUkr8 = "38 063 827 82 79";
+        String phoneUkr9 = "38 063 827_82_79";
+
+        String phoneArgentina2 = "+54(063)827 82 79";
+        String phoneArgentina3 = "+54(063)827-82-79";
+        String phoneArgentina4 = "+54(063)827_82_79";
+        String phoneArgentina5 = "54(063)827_82_79";
+        String phoneArgentina6 = "54(063)827-82-79";
+        String phoneArgentina7 = "54 063 827-82-79";
+        String phoneArgentina8 = "54 063 827 82 79";
+        String phoneArgentina9 = "54 063 827_82_79";
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
+                phoneUkr, phoneUkr1, phoneUkr2, phoneUkr3, phoneUkr4, phoneUkr5, phoneUkr6, phoneUkr7, phoneUkr8, phoneUkr9,
+                phoneArgentina2, phoneArgentina3, phoneArgentina4, phoneArgentina5, phoneArgentina6, phoneArgentina7, phoneArgentina8, phoneArgentina9);
+    }
+
+    private void doRegEx(String inputData, Pattern pattern) {
+        int index = 0;
+        Matcher matcher = pattern.matcher(inputData);
+        while (matcher.find()) {
+            System.out.println(String.format("%d = %s", index, matcher.group()));
+            index++;
+        }
+    }
+
+    private void doReExForEmailPricePhone(String inputData, Pattern emailPattern, Pattern phonePattern, Pattern pricePattern) {
+        List<String> data = Arrays.asList(inputData.split(", "));
+        Collections.shuffle(data);
+
+        for (String s : data) {
+            Matcher emailMatcher = emailPattern.matcher(s);
+            Matcher phoneMatcher = phonePattern.matcher(s);
+            Matcher priceMatcher = pricePattern.matcher(s);
+
+            if (emailMatcher.find()) {
+                System.out.println(String.format("%s - is email", s));
+            } else if (phoneMatcher.find()) {
+                System.out.println(String.format("%s - is phone", s));
+            } else if (priceMatcher.find()) {
+                System.out.println(String.format("%s - is price", s));
+
+            }
+
         }
     }
 }
