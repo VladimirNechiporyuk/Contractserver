@@ -508,7 +508,7 @@ public class RegExp {
     @Test
     public void regExForEmails() {
         String emails = getEmails();
-        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+");
+        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+\\b");
         doRegEx(emails, emailsPattern);
     }
 
@@ -533,9 +533,9 @@ public class RegExp {
         String prices = getPrices();
         String phones = getPhones();
         String emailsPricesPhones = String.format("%s, %s, %s", emails, prices, phones);
-        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+[^\\s]");
-        Pattern pricesPattern = Pattern.compile("\\b[\\d]+[.\\s]?([\\d]+)?\\b");
-        Pattern phonesPattern = Pattern.compile("\\b[+]?([1-9]{2})?[\\s(]?[\\d]+[\\s)]?[\\s-_]?([\\d]{3})?[\\s-_]?([\\d]{2})?[\\s-_]?([\\d]{2})?");
+        Pattern emailsPattern = Pattern.compile("\\b[a-zA-Z][a-zA-Z-0-9]*?@[a-z]+?\\Q.\\E[a-z]+\\b");
+        Pattern pricesPattern = Pattern.compile("\\b[\\d]+?[.]?([\\d]+)?\\b");
+        Pattern phonesPattern = Pattern.compile("^\\+?([1-9]{2})?[\\s]?[(]?[\\d]+[\\s)]?[\\s-_]?([\\d]{3})?[\\s-_]?([\\d]{2})?[\\s-_]?([\\d]{2})?\\b [\\w]\\b");
         doReExForEmailPricePhone(emailsPricesPhones, emailsPattern, pricesPattern, phonesPattern);
     }
 
@@ -598,11 +598,10 @@ public class RegExp {
 
             if (emailMatcher.find()) {
                 System.out.println(String.format("%s - is email", s));
-            } else if (phoneMatcher.find()) {
-                System.out.println(String.format("%s - is phone", s));
             } else if (priceMatcher.find()) {
                 System.out.println(String.format("%s - is price", s));
-
+            } else if (phoneMatcher.find()) {
+                System.out.println(String.format("%s - is phone", s));
             }
 
         }

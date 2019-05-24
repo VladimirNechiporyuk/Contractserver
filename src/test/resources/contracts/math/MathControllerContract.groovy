@@ -9,8 +9,8 @@ Contract.make {
         method(HttpMethods.HttpMethod.GET)
         urlPath("/math/multiply") {
             queryParameters {
-                parameter 'number' : value(consumer(matching("^\\d*[1-9]+\$")), producer(2))
-                parameter 'multiplier' : value(consumer(matching("^\\d*[1-9]+\$")), producer(2))
+                parameter 'number' : value(consumer(matching("^[1-9]+\$")), producer(2))
+                parameter 'multiplier' : value(consumer(matching("^\\d+\$")), producer(2))
             }
         }
     }
